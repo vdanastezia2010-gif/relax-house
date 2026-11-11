@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="uk" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RELAX HOUSE — Студія масажу & SPA у Кропивницькому</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            bg: '#FBF9F5',       /* Warm light nude background */
+                            card: '#FFFFFF',     /* Pure white for cards */
+                            sand: '#F3EDE2',     /* Soft nude accent */
+                            beige: '#E8DEC9',    /* Warm tone */
+                            gold: '#C5A059',     /* Elegant Gold accent */
+                            sage: '#8A9A86',     /* Relaxing sage green accent */
+                            sagedark: '#6E7E6A',
+                            charcoal: '#2C2B29', /* Soft dark text */
+                            muted: '#6E6B65',    /* Muted body text */
+                            border: '#E6E1D7'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #FBF9F5;
+            color: #2C2B29;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .font-serif-title {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        .glass-header {
+            background: rgba(251, 249, 245, 0.92);
+            backdrop-filter: blur(12px);
+        }
+        .modal-backdrop {
+            background: rgba(44, 43, 41, 0.5);
+            backdrop-filter: blur(4px);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-sage selection:text-white flex flex-col min-h-screen">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="fixed top-0 left-0 right-0 z-40 glass-header border-b border-brand-border transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Logo matching image SVG design -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="flex items-center justify-center border-r border-brand-charcoal pr-3 h-10">
+                    <svg class="h-9 w-auto text-brand-charcoal transition-transform duration-300 group-hover:scale-105" viewBox="0 0 100 80" fill="none" stroke="currentColor">
+                        <path d="M 15 10 L 15 70" stroke-width="6" stroke-linecap="square" />
+                        <path d="M 15 40 Q 38 10 42 35 L 42 36 Q 30 50 15 40" stroke-width="5" fill="currentColor"/>
+                        <path d="M 28 38 L 43 70" stroke-width="6" stroke-linecap="square"/>
+                        <line x1="50" y1="5" x2="50" y2="75" stroke-width="2" stroke="#2C2B29" />
+                        <path d="M 58 10 L 58 70" stroke-width="6" stroke-linecap="square"/>
+                        <path d="M 85 10 L 85 70" stroke-width="6" stroke-linecap="square"/>
+                        <line x1="58" y1="40" x2="85" y2="40" stroke-width="5"/>
+                    </svg>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-[10px] uppercase tracking-[0.25em] text-brand-muted font-medium">Massage studio</span>
+                    <span class="font-serif-title text-xl font-bold tracking-[0.15em] text-brand-charcoal leading-tight">RELAX HOUSE</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8 text-xs uppercase tracking-widest font-semibold text-brand-charcoal">
+                <a href="#about" class="hover:text-brand-sage transition-colors">Про нас</a>
+                <a href="#manual" class="hover:text-brand-sage transition-colors">Ручний масаж</a>
+                <a href="#hardware" class="hover:text-brand-sage transition-colors">Апаратний</a>
+                <a href="#spa-menu" class="hover:text-brand-gold transition-colors text-brand-gold font-bold">SPA Menu</a>
+                <a href="#body-wraps" class="hover:text-brand-sage transition-colors">Обгортання</a>
+                <a href="#contacts" class="hover:text-brand-sage transition-colors">Контакти</a>
+            </nav>
+
+            <!-- CTA Button & Mobile Toggle -->
+            <div class="flex items-center gap-4">
+                <button onclick="openBookingModal()" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider text-white bg-brand-sage hover:bg-brand-sagedark transition-all shadow-sm hover:shadow-md">
+                    Записатися
+                </button>
+                <a href="tel:+380977328605" class="p-2.5 rounded-full text-brand-charcoal hover:bg-brand-sand transition-colors md:hidden" aria-label="Call">
+                    <i class="fa-solid fa-phone"></i>
+                </a>
+                <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 text-brand-charcoal focus:outline-none md:hidden">
+                    <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden border-b border-brand-border bg-brand-bg px-6 py-6 space-y-4">
+            <a href="#about" onclick="toggleMobileMenu()" class="block text-sm font-medium text-brand-charcoal">Про нас</a>
+            <a href="#manual" onclick="toggleMobileMenu()" class="block text-sm font-medium text-brand-charcoal">Ручний масаж</a>
+            <a href="#hardware" onclick="toggleMobileMenu()" class="block text-sm font-medium text-brand-charcoal">Апаратний масаж</a>
+            <a href="#spa-menu" onclick="toggleMobileMenu()" class="block text-sm font-bold text-brand-gold">SPA Меню Ритуали</a>
+            <a href="#body-wraps" onclick="toggleMobileMenu()" class="block text-sm font-medium text-brand-charcoal">Професійні Обгортання</a>
+            <a href="#contacts" onclick="toggleMobileMenu()" class="block text-sm font-medium text-brand-charcoal">Контакти & Графік</a>
+            <div class="pt-2">
+                <button onclick="toggleMobileMenu(); openBookingModal()" class="w-full text-center py-3 rounded-full text-xs font-semibold uppercase tracking-wider text-white bg-brand-sage hover:bg-brand-sagedark transition-all">
+                    Онлайн Запис
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="pt-32 pb-16 lg:pt-40 lg:pb-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-sand/80 text-brand-sagedark text-xs font-medium tracking-wide">
+                        <span class="w-2 h-2 rounded-full bg-brand-sage animate-pulse"></span>
+                        Студія гармонії, масажу та SPA у Кропивницькому
+                    </div>
+                    <h1 class="font-serif-title text-4xl sm:text-5xl lg:text-6xl font-normal leading-tight text-brand-charcoal">
+                        Відновлення гармонії <br>
+                        <span class="italic font-light text-brand-sagedark">тіла та душі</span> в затишній атмосфері
+                    </h1>
+                    <p class="text-brand-muted text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
+                        Пориньте у світ глибокої релаксації. Масажі в 4 руки, апаратна косметологія, елітні SPA-ритуали та професійні доглядові обгортання.
+                    </p>
+                    <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        <button onclick="openBookingModal()" class="w-full sm:w-auto px-8 py-4 rounded-full text-xs uppercase tracking-widest font-semibold bg-brand-charcoal text-white hover:bg-brand-sage transition-all duration-300 shadow-md">
+                            Записатися на візит
+                        </button>
+                        <a href="tel:+380977328605" class="w-full sm:w-auto px-8 py-4 rounded-full text-xs uppercase tracking-widest font-semibold border border-brand-charcoal/30 text-brand-charcoal hover:bg-brand-sand/50 transition-all text-center">
+                            <i class="fa-solid fa-phone mr-2 text-xs"></i> +380 97 732 86 05
+                        </a>
+                    </div>
+                    
+                    <div class="pt-6 border-t border-brand-border/60 flex flex-wrap justify-center lg:justify-start gap-6 text-xs text-brand-muted">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-location-dot text-brand-sage"></i>
+                            <span>вул. Преображенська, Кропивницький</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-regular fa-clock text-brand-sage"></i>
+                            <span>Пн - Сб: 08:00 – 19:00 (Нд: зачинено)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative w-full max-w-md">
+                        <div class="absolute inset-0 bg-brand-beige rounded-3xl transform rotate-3 scale-105 opacity-60"></div>
+                        <div class="relative bg-brand-card rounded-3xl p-8 border border-brand-border shadow-xl space-y-6 text-center">
+                            
+                            <div class="py-4 border-b border-brand-border">
+                                <span class="text-xs tracking-[0.3em] uppercase text-brand-muted font-medium block mb-2">Студія масажу</span>
+                                <h2 class="font-serif-title text-3xl font-semibold tracking-wider text-brand-charcoal">RELAX HOUSE</h2>
+                                <p class="text-xs italic text-brand-sagedark mt-1">Твій простір гармонії та відновлення</p>
+                            </div>
+
+                            <div class="space-y-3 text-left text-xs">
+                                <div class="flex items-center gap-3 p-3 rounded-xl bg-brand-bg">
+                                    <i class="fa-solid fa-spa text-brand-sage text-lg"></i>
+                                    <span>Ексклюзивні 3-годинні SPA-ритуали</span>
+                                </div>
+                                <div class="flex items-center gap-3 p-3 rounded-xl bg-brand-bg">
+                                    <i class="fa-solid fa-gem text-brand-sage text-lg"></i>
+                                    <span>Ендосфера, РФ-ліфтинг, Кріоліполіз</span>
+                                </div>
+                                <div class="flex items-center gap-3 p-3 rounded-xl bg-brand-bg">
+                                    <i class="fa-solid fa-users text-brand-sage text-lg"></i>
+                                    <span>Парні програми для двох</span>
+                                </div>
+                            </div>
+
+                            <button onclick="openBookingModal()" class="w-full py-3.5 rounded-2xl bg-brand-sand hover:bg-brand-beige text-brand-charcoal text-xs font-bold uppercase tracking-wider transition-colors">
+                                Обрати дату та час
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SPA MENU SECTION (Based on Image 1) -->
+    <section id="spa-menu" class="py-20 bg-brand-charcoal text-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-14">
+                <span class="text-xs uppercase tracking-[0.3em] text-brand-gold font-bold">VIP відпочинок</span>
+                <h2 class="font-serif-title text-4xl sm:text-5xl font-normal mt-1">SPA MENU</h2>
+                <p class="text-xs text-white/70 mt-3 font-light">Комплексні ритуали відновлення сил, краси та глибокого релаксу</p>
+                <div class="w-16 h-0.5 bg-brand-gold mx-auto mt-4"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                
+                <!-- SPA 1: RELAX -->
+                <div class="bg-white/5 border border-white/10 rounded-3xl p-6 sm:p-8 hover:border-brand-gold transition-all flex flex-col justify-between space-y-6">
+                    <div>
+                        <div class="flex justify-between items-center pb-4 border-b border-white/10">
+                            <div>
+                                <span class="text-[10px] uppercase tracking-widest text-brand-gold">SPA-ритуал</span>
+                                <h3 class="font-serif-title text-3xl font-bold tracking-wide">«RELAX»</h3>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-brand-gold/20 text-brand-gold text-xs font-mono"><i class="fa-regular fa-clock mr-1"></i> 3 години</span>
+                        </div>
+                        <ul class="mt-6 space-y-3 text-xs text-white/80">
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-hot-tub-person text-brand-gold mt-0.5"></i> Прогрівання в інфрачервоній сауні</li>
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-spa text-brand-gold mt-0.5"></i> Пілінг всього тіла рукавичкою Кесе</li>
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-gem text-brand-gold mt-0.5"></i> Стоун-масаж гарячим камінням</li>
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-wine-glass text-brand-gold mt-0.5"></i> Чаювання або келих шампанського (на вибір) та відпочинок</li>
+                        </ul>
+                    </div>
+
+                    <div class="pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
+                        <div class="flex gap-6">
+                            <div>
+                                <span class="block text-[10px] text-white/50"><i class="fa-solid fa-user mr-1"></i> 1 особа</span>
+                                <span class="font-serif-title text-2xl font-bold text-brand-gold">4 500 ₴</span>
+                            </div>
+                            <div>
+                                <span class="block text-[10px] text-white/50"><i class="fa-solid fa-user-group mr-1"></i> 2 особи</span>
+                                <span class="font-serif-title text-2xl font-bold text-brand-gold">6 000 ₴</span>
+                            </div>
+                        </div>
+                        <button onclick="openBookingModal('SPA-ритуал RELAX')" class="px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-gold hover:bg-amber-600 text-brand-charcoal transition-colors">
+                            Забронювати
+                        </button>
+                    </div>
+                </div>
+
+                <!-- SPA 2: CHOCOLATE -->
+                <div class="bg-white/5 border border-white/10 rounded-3xl p-6 sm:p-8 hover:border-brand-gold transition-all flex flex-col justify-between space-y-6">
+                    <div>
+                        <div class="flex justify-between items-center pb-4 border-b border-white/10">
+                            <div>
+                                <span class="text-[10px] uppercase tracking-widest text-brand-gold">SPA-ритуал</span>
+                                <h3 class="font-serif-title text-3xl font-bold tracking-wide">«CHOCOLATE»</h3>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-brand-gold/20 text-brand-gold text-xs font-mono"><i class="fa-regular fa-clock mr-1"></i> 3 год 30 хв</span>
+                        </div>
+                        <ul class="mt-6 space-y-3 text-xs text-white/80">
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-hot-tub-person text-brand-gold mt-0.5"></i> Прогрівання в інфрачервоній сауні</li>
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-cookie text-brand-gold mt-0.5"></i> Кавово-шоколадне скрабування тіла</li>
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-feather text-brand-gold mt-0.5"></i> Шоколадне обгортання</li>
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-spa text-brand-gold mt-0.5"></i> Масаж всього тіла + масаж обличчя</li>
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-wine-glass text-brand-gold mt-0.5"></i> Чаювання або келих шампанського (на вибір) та відпочинок</li>
+                        </ul>
+                    </div>
+
+                    <div class="pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
+                        <div class="flex gap-6">
+                            <div>
+                                <span class="block text-[10px] text-white/50"><i class="fa-solid fa-user mr-1"></i> 1 особа</span>
+                                <span class="font-serif-title text-2xl font-bold text-brand-gold">5 500 ₴</span>
+                            </div>
+                            <div>
+                                <span class="block text-[10px] text-white/50"><i class="fa-solid fa-user-group mr-1"></i> 2 особи</span>
+                                <span class="font-serif-title text-2xl font-bold text-brand-gold">7 000 ₴</span>
+                            </div>
+                        </div>
+                        <button onclick="openBookingModal('SPA-ритуал CHOCOLATE')" class="px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-gold hover:bg-amber-600 text-brand-charcoal transition-colors">
+                            Забронювати
+                        </button>
+                    </div>
+                </div>
+
+                <!-- SPA 3: DETOX -->
+                <div class="bg-white/5 border border-white/10 rounded-3xl p-6 sm:p-8 hover:border-brand-gold transition-all flex flex-col justify-between space-y-6">
+                    <div>
+                        <div class="flex justify-between items-center pb-4 border-b border-white/10">
+                            <div>
+                                <span class="text-[10px] uppercase tracking-widest text-brand-gold">SPA-ритуал</span>
+                                <h3 class="font-serif-title text-3xl font-bold tracking-wide">«DETOX»</h3>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-brand-gold/20 text-brand-gold text-xs font-mono"><i class="fa-regular fa-clock mr-1"></i> 3 год 45 хв</span>
+                        </div>
+                        <ul class="mt-6 space-y-3 text-xs text-white/80">
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-hot-tub-person text-brand-gold mt-0.5"></i> Прогрівання в інфрачервоній сауні</li>
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-leaf text-brand-gold mt-0.5"></i> Детокс-скрабування всього тіла</li>
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-spa text-brand-gold mt-0.5"></i> Масаж трав'яними мішечками + Relax-масаж всього тіла</li>
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-droplet text-brand-gold mt-0.5"></i> Преміум детокс-обгортання професійною SPA-косметикою (підбирається індивідуально)</li>
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-mug-hot text-brand-gold mt-0.5"></i> Чаювання та відпочинок</li>
+                        </ul>
+                    </div>
+
+                    <div class="pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
+                        <div class="flex gap-6">
+                            <div>
+                                <span class="block text-[10px] text-white/50"><i class="fa-solid fa-user mr-1"></i> 1 особа</span>
+                                <span class="font-serif-title text-2xl font-bold text-brand-gold">6 000 ₴</span>
+                            </div>
+                            <div>
+                                <span class="block text-[10px] text-white/50"><i class="fa-solid fa-user-group mr-1"></i> 2 особи</span>
+                                <span class="font-serif-title text-2xl font-bold text-brand-gold">7 500 ₴</span>
+                            </div>
+                        </div>
+                        <button onclick="openBookingModal('SPA-ритуал DETOX')" class="px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-gold hover:bg-amber-600 text-brand-charcoal transition-colors">
+                            Забронювати
+                        </button>
+                    </div>
+                </div>
+
+                <!-- SPA 4: ПЕРЕЗАВАНТАЖЕННЯ -->
+                <div class="bg-white/5 border border-white/10 rounded-3xl p-6 sm:p-8 hover:border-brand-gold transition-all flex flex-col justify-between space-y-6">
+                    <div>
+                        <div class="flex justify-between items-center pb-4 border-b border-white/10">
+                            <div>
+                                <span class="text-[10px] uppercase tracking-widest text-brand-gold">SPA-ритуал</span>
+                                <h3 class="font-serif-title text-3xl font-bold tracking-wide">«ПЕРЕЗАВАНТАЖЕННЯ»</h3>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-brand-gold/20 text-brand-gold text-xs font-mono"><i class="fa-regular fa-clock mr-1"></i> 3 год 30 хв</span>
+                        </div>
+                        <ul class="mt-6 space-y-3 text-xs text-white/80">
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-hot-tub-person text-brand-gold mt-0.5"></i> Прогрівання в інфрачервоній сауні</li>
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-wind text-brand-gold mt-0.5"></i> Аромаскрабування всього тіла</li>
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-hand-holding-heart text-brand-gold mt-0.5"></i> Relax-масаж всього тіла теплою ароматичною олією</li>
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-bell text-brand-gold mt-0.5"></i> Сеанс звукотерапії медитаційними чашами</li>
+                            <li class="flex items-start gap-2.5"><i class="fa-solid fa-wine-glass text-brand-gold mt-0.5"></i> Авторський трав'яний чай або келих шампанського (на вибір) та відпочинок</li>
+                        </ul>
+                    </div>
+
+                    <div class="pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
+                        <div class="flex gap-6">
+                            <div>
+                                <span class="block text-[10px] text-white/50"><i class="fa-solid fa-user mr-1"></i> 1 особа</span>
+                                <span class="font-serif-title text-2xl font-bold text-brand-gold">5 500 ₴</span>
+                            </div>
+                            <div>
+                                <span class="block text-[10px] text-white/50"><i class="fa-solid fa-user-group mr-1"></i> 2 особи</span>
+                                <span class="font-serif-title text-2xl font-bold text-brand-gold">6 500 ₴</span>
+                            </div>
+                        </div>
+                        <button onclick="openBookingModal('SPA-ритуал ПЕРЕЗАВАНТАЖЕННЯ')" class="px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-gold hover:bg-amber-600 text-brand-charcoal transition-colors">
+                            Забронювати
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PROFESSIONAL BODY WRAPS SECTION (Based on Image 2) -->
+    <section id="body-wraps" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-14">
+                <span class="text-xs uppercase tracking-[0.2em] text-brand-sagedark font-semibold">Професійний догляд • Гармонія • Відновлення</span>
+                <h2 class="font-serif-title text-3xl sm:text-4xl font-normal text-brand-charcoal mt-1">ПРОФЕСІЙНІ ОБГОРТАННЯ</h2>
+                <div class="w-12 h-0.5 bg-brand-sage mx-auto mt-3"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Wrap 1 -->
+                <div class="bg-brand-bg rounded-3xl p-6 border border-brand-border flex flex-col justify-between hover:border-brand-sage transition-all">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="w-8 h-8 rounded-full bg-brand-charcoal text-white flex items-center justify-center font-bold text-xs">1</span>
+                            <span class="font-serif-title text-2xl font-bold text-brand-charcoal">1 300 ₴</span>
+                        </div>
+                        <h3 class="font-serif-title text-2xl font-semibold text-brand-charcoal mb-2">СОЛЬОВІ / ДЕТОКС ОБГОРТАННЯ</h3>
+                        <p class="text-xs text-brand-sagedark font-semibold mb-2"><i class="fa-solid fa-leaf mr-1"></i> Для обгортання:</p>
+                        <p class="text-xs text-brand-muted leading-relaxed mb-4">
+                            Використовують морську або мінеральну сіль, збагачену мінералами та мікроелементами, для очищення шкіри та організму від токсинів та набряків.
+                        </p>
+                        <p class="text-xs text-brand-sagedark font-semibold mb-1"><i class="fa-solid fa-check mr-1"></i> Переваги:</p>
+                        <p class="text-xs text-brand-muted leading-relaxed">
+                            Сприяють детоксикації шкіри, покращують мікроциркуляцію, стимулюють обмін речовин та зміцнюють тканини.
+                        </p>
+                    </div>
+                    <button onclick="openBookingModal('Сольові / Детокс обгортання')" class="mt-6 w-full py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider bg-brand-sand hover:bg-brand-sage hover:text-white transition-colors">
+                        Записатися
+                    </button>
+                </div>
+
+                <!-- Wrap 2 -->
+                <div class="bg-brand-bg rounded-3xl p-6 border border-brand-border flex flex-col justify-between hover:border-brand-sage transition-all">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="w-8 h-8 rounded-full bg-brand-charcoal text-white flex items-center justify-center font-bold text-xs">2</span>
+                            <span class="font-serif-title text-2xl font-bold text-brand-charcoal">1 200 ₴</span>
+                        </div>
+                        <h3 class="font-serif-title text-2xl font-semibold text-brand-charcoal mb-2">ТЕРМО ОБГОРТАННЯ</h3>
+                        <p class="text-xs text-brand-sagedark font-semibold mb-2"><i class="fa-solid fa-fire mr-1"></i> Метод дії:</p>
+                        <p class="text-xs text-brand-muted leading-relaxed mb-4">
+                            Застосовуються з використанням спеціальних, збагачених активними компонентами засобів. Такими як кофеїн, перець, нікотинова кислота та їх похідні.
+                        </p>
+                        <p class="text-xs text-brand-sagedark font-semibold mb-1"><i class="fa-solid fa-check mr-1"></i> Переваги:</p>
+                        <p class="text-xs text-brand-muted leading-relaxed">
+                            Стимулюють місцевий кровообіг та обмін речовин, посилюючи термогенез та прискорюючи процесс розщеплення жирів.
+                        </p>
+                    </div>
+                    <button onclick="openBookingModal('Термо обгортання')" class="mt-6 w-full py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider bg-brand-sand hover:bg-brand-sage hover:text-white transition-colors">
+                        Записатися
+                    </button>
+                </div>
+
+                <!-- Wrap 3 -->
+                <div class="bg-brand-bg rounded-3xl p-6 border border-brand-border flex flex-col justify-between hover:border-brand-sage transition-all">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="w-8 h-8 rounded-full bg-brand-charcoal text-white flex items-center justify-center font-bold text-xs">3</span>
+                            <span class="font-serif-title text-2xl font-bold text-brand-charcoal">1 200 ₴</span>
+                        </div>
+                        <h3 class="font-serif-title text-2xl font-semibold text-brand-charcoal mb-2">КРІО ОБГОРТАННЯ</h3>
+                        <p class="text-xs text-brand-sagedark font-semibold mb-2"><i class="fa-solid fa-snowflake mr-1"></i> Метод дії:</p>
+                        <p class="text-xs text-brand-muted leading-relaxed mb-4">
+                            Засновані на застосуванні холоду з використанням спеціальних холодних компонентів, таких як ментол, камфора, кінський каштан та інші.
+                        </p>
+                        <p class="text-xs text-brand-sagedark font-semibold mb-1"><i class="fa-solid fa-check mr-1"></i> Переваги:</p>
+                        <p class="text-xs text-brand-muted leading-relaxed">
+                            Сприяють звуженню судин, зменшують набряклість, активують метаболізм та покращують циркуляцію крові.
+                        </p>
+                    </div>
+                    <button onclick="openBookingModal('Кріо обгортання')" class="mt-6 w-full py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider bg-brand-sand hover:bg-brand-sage hover:text-white transition-colors">
+                        Записатися
+                    </button>
+                </div>
+
+                <!-- Wrap 4 -->
+                <div class="bg-brand-bg rounded-3xl p-6 border border-brand-border flex flex-col justify-between hover:border-brand-sage transition-all">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="w-8 h-8 rounded-full bg-brand-charcoal text-white flex items-center justify-center font-bold text-xs">4</span>
+                            <span class="font-serif-title text-2xl font-bold text-brand-charcoal">1 500 ₴</span>
+                        </div>
+                        <h3 class="font-serif-title text-2xl font-semibold text-brand-charcoal mb-2">ГАРАЧЕ БАНДАЖНЕ ОБГОРТАННЯ</h3>
+                        <p class="text-xs text-brand-muted leading-relaxed mb-4">
+                            Виконуються з використанням спеціальних бандажів, просочених активними компонентами. Створює компресійний ефект.
+                        </p>
+                        <p class="text-xs text-brand-sagedark font-semibold mb-1"><i class="fa-solid fa-check mr-1"></i> Переваги:</p>
+                        <p class="text-xs text-brand-muted leading-relaxed">
+                            Допомагають зменшити об'єми, підтягнути шкіру, покращити мікроциркуляцію та вивести токсини.
+                        </p>
+                    </div>
+                    <button onclick="openBookingModal('Гаряче бандажне обгортання')" class="mt-6 w-full py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider bg-brand-sand hover:bg-brand-sage hover:text-white transition-colors">
+                        Записатися
+                    </button>
+                </div>
+
+                <!-- Wrap 5 -->
+                <div class="bg-brand-bg rounded-3xl p-6 border border-brand-border flex flex-col justify-between hover:border-brand-sage transition-all">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="w-8 h-8 rounded-full bg-brand-charcoal text-white flex items-center justify-center font-bold text-xs">5</span>
+                            <span class="font-serif-title text-2xl font-bold text-brand-charcoal">1 500 ₴</span>
+                        </div>
+                        <h3 class="font-serif-title text-2xl font-semibold text-brand-charcoal mb-2">ХОЛОДНЕ БАНДАЖНЕ ОБГОРТАННЯ</h3>
+                        <p class="text-xs text-brand-muted leading-relaxed mb-4">
+                            Спеціальні просочені бандажі з компресійним впливом для потужного тонізації.
+                        </p>
+                        <p class="text-xs text-brand-sagedark font-semibold mb-1"><i class="fa-solid fa-check mr-1"></i> Переваги:</p>
+                        <p class="text-xs text-brand-muted leading-relaxed">
+                            Створює ефект дренажу та ліфтингу одночасно, підтягує шкіру, зменшує набряки та стимулює відтік лімфи.
+                        </p>
+                    </div>
+                    <button onclick="openBookingModal('Холодне бандажне обгортання')" class="mt-6 w-full py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider bg-brand-sand hover:bg-brand-sage hover:text-white transition-colors">
+                        Записатися
+                    </button>
+                </div>
+
+                <!-- Wrap 6 -->
+                <div class="bg-brand-bg rounded-3xl p-6 border border-brand-border flex flex-col justify-between hover:border-brand-sage transition-all">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="w-8 h-8 rounded-full bg-brand-charcoal text-white flex items-center justify-center font-bold text-xs">6</span>
+                            <span class="font-serif-title text-2xl font-bold text-brand-charcoal">1 800 ₴</span>
+                        </div>
+                        <h3 class="font-serif-title text-2xl font-semibold text-brand-charcoal mb-2">ГІПСОВЕ ОБГОРТАННЯ</h3>
+                        <p class="text-xs text-brand-muted leading-relaxed mb-4">
+                            Використовується спеціальна гіпсова маска, просочена активними компонентами, що створює герметичність (оклюзію).
+                        </p>
+                        <p class="text-xs text-brand-sagedark font-semibold mb-1"><i class="fa-solid fa-check mr-1"></i> Переваги:</p>
+                        <p class="text-xs text-brand-muted leading-relaxed">
+                            Забезпечує інтенсивне проникнення активних речовин у шкіру, підвищуючи їх ефективність та тривалість дії.
+                        </p>
+                    </div>
+                    <button onclick="openBookingModal('Гіпсове обгортання')" class="mt-6 w-full py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider bg-brand-sand hover:bg-brand-sage hover:text-white transition-colors">
+                        Записатися
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- Additional Bandage Wraps Sub-list -->
+            <div class="mt-12 bg-brand-sand/40 rounded-3xl p-6 sm:p-8 border border-brand-border">
+                <h4 class="font-serif-title text-2xl font-semibold text-brand-charcoal mb-4 text-center">Експрес Бліц-Обгортання (40 хв — 900 ₴)</h4>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+                    <div class="bg-white p-4 rounded-2xl border border-brand-border space-y-1">
+                        <span class="font-semibold text-brand-charcoal block">Ліпосомальні обгортання</span>
+                        <p class="text-brand-muted text-[11px]">Anti-cellulite bandage LPD's slimming fluid</p>
+                        <div class="pt-2 font-mono font-bold text-brand-sagedark">40 хв — 900 ₴</div>
+                    </div>
+                    <div class="bg-white p-4 rounded-2xl border border-brand-border space-y-1">
+                        <span class="font-semibold text-brand-charcoal block">Ензимні обгортання</span>
+                        <p class="text-brand-muted text-[11px]">Anti-cellulite bandage Zymo cell fluid</p>
+                        <div class="pt-2 font-mono font-bold text-brand-sagedark">40 хв — 900 ₴</div>
+                    </div>
+                    <div class="bg-white p-4 rounded-2xl border border-brand-border space-y-1">
+                        <span class="font-semibold text-brand-charcoal block">З олією ксименії</span>
+                        <p class="text-brand-muted text-[11px]">Anti-cellulite bandage African ximenia fluid</p>
+                        <div class="pt-2 font-mono font-bold text-brand-sagedark">40 хв — 900 ₴</div>
+                    </div>
+                    <div class="bg-white p-4 rounded-2xl border border-brand-border space-y-1">
+                        <span class="font-semibold text-brand-charcoal block">З розігрівальним ефектом</span>
+                        <p class="text-brand-muted text-[11px]">Anti-cellulite bandage warming effect</p>
+                        <div class="pt-2 font-mono font-bold text-brand-sagedark">40 хв — 900 ₴</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MANUAL MASSAGE PRICING -->
+    <section id="manual" class="py-16 bg-brand-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs uppercase tracking-[0.2em] text-brand-sagedark font-semibold">Класика та авторські техніки</span>
+                <h2 class="font-serif-title text-3xl sm:text-4xl font-normal text-brand-charcoal mt-1">РУЧНИЙ МАСАЖ</h2>
+                <div class="w-12 h-0.5 bg-brand-sage mx-auto mt-3"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Special Highlight Card: 4 Hands -->
+                <div class="lg:col-span-3 bg-gradient-to-r from-brand-sand to-brand-beige p-6 sm:p-8 rounded-3xl border border-brand-sage/40 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm">
+                    <div>
+                        <span class="px-3 py-1 rounded-full bg-brand-sage text-white text-[10px] uppercase font-bold tracking-widest">Особлива процедура</span>
+                        <h3 class="font-serif-title text-3xl font-bold text-brand-charcoal mt-2">МАСАЖ В 4 РУКИ</h3>
+                        <p class="text-xs text-brand-muted mt-1 max-w-xl">
+                            Синхронний масаж від двох майстрів одночасно. Максимальне занурення у релакс та подвійний ефект опрацювання м'язів.
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-6 shrink-0">
+                        <div class="text-right">
+                            <span class="text-xs text-brand-muted block font-mono">60 хвилин</span>
+                            <span class="font-serif-title text-3xl font-bold text-brand-charcoal">1 800 ₴</span>
+                        </div>
+                        <button onclick="openBookingModal('Масаж в 4 руки')" class="px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-charcoal text-white hover:bg-brand-sage transition-colors">
+                            Записатись
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Service Item -->
+                <div class="bg-white p-5 rounded-2xl border border-brand-border flex items-center justify-between hover:border-brand-sage transition-colors">
+                    <div>
+                        <h4 class="font-semibold text-sm text-brand-charcoal">Шийно-комірецьна зона</h4>
+                        <span class="text-xs text-brand-muted font-mono">30 хв</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-bold text-brand-charcoal text-base">400 ₴</span>
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-brand-border flex items-center justify-between hover:border-brand-sage transition-colors">
+                    <div>
+                        <h4 class="font-semibold text-sm text-brand-charcoal">Масаж спини</h4>
+                        <span class="text-xs text-brand-muted font-mono">40 хв</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-bold text-brand-charcoal text-base">500 ₴</span>
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-brand-border flex items-center justify-between hover:border-brand-sage transition-colors">
+                    <div>
+                        <h4 class="font-semibold text-sm text-brand-charcoal">Масаж загальний класичний</h4>
+                        <span class="text-xs text-brand-muted font-mono">60 хв</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-bold text-brand-charcoal text-base">800 ₴</span>
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-brand-border flex items-center justify-between hover:border-brand-sage transition-colors">
+                    <div>
+                        <h4 class="font-semibold text-sm text-brand-charcoal">Масаж relax всього тіла</h4>
+                        <span class="text-xs text-brand-muted font-mono">60 хв</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-bold text-brand-charcoal text-base">800 ₴</span>
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-brand-border flex items-center justify-between hover:border-brand-sage transition-colors">
+                    <div>
+                        <h4 class="font-semibold text-sm text-brand-charcoal">Relax-масаж з голови до п'ят</h4>
+                        <span class="text-xs text-brand-muted font-mono">90 хв</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-bold text-brand-charcoal text-base">1 100 ₴</span>
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-brand-border flex items-center justify-between hover:border-brand-sage transition-colors">
+                    <div>
+                        <h4 class="font-semibold text-sm text-brand-charcoal">Спортивний масаж</h4>
+                        <span class="text-xs text-brand-muted font-mono">60 / 90 хв</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-bold text-brand-charcoal text-base">900 / 1 200 ₴</span>
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-brand-border flex items-center justify-between hover:border-brand-sage transition-colors">
+                    <div>
+                        <h4 class="font-semibold text-sm text-brand-charcoal">Стретчинг-масаж</h4>
+                        <span class="text-xs text-brand-muted font-mono">90 хв</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-bold text-brand-charcoal text-base">1 200 ₴</span>
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-brand-border flex items-center justify-between hover:border-brand-sage transition-colors">
+                    <div>
+                        <h4 class="font-semibold text-sm text-brand-charcoal">Масаж для майбутніх мам</h4>
+                        <span class="text-xs text-brand-muted font-mono">60 хв</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-bold text-brand-charcoal text-base">700 ₴</span>
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-brand-border flex items-center justify-between hover:border-brand-sage transition-colors">
+                    <div>
+                        <h4 class="font-semibold text-sm text-brand-charcoal">Лімфодренажний масаж</h4>
+                        <span class="text-xs text-brand-muted font-mono">90 хв</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-bold text-brand-charcoal text-base">1 100 ₴</span>
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-brand-border flex items-center justify-between hover:border-brand-sage transition-colors">
+                    <div>
+                        <h4 class="font-semibold text-sm text-brand-charcoal">Масаж ніг</h4>
+                        <span class="text-xs text-brand-muted font-mono">45 хв</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-bold text-brand-charcoal text-base">600 ₴</span>
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-brand-border flex items-center justify-between hover:border-brand-sage transition-colors">
+                    <div>
+                        <h4 class="font-semibold text-sm text-brand-charcoal">Масаж обличчя</h4>
+                        <span class="text-xs text-brand-muted font-mono">30 хв</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-bold text-brand-charcoal text-base">600 ₴</span>
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-brand-border flex items-center justify-between hover:border-brand-sage transition-colors">
+                    <div>
+                        <h4 class="font-semibold text-sm text-brand-charcoal">Масаж обличчя (Кобідо)</h4>
+                        <span class="text-xs text-brand-muted font-mono">30 хв</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-bold text-brand-charcoal text-base">700 ₴</span>
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-brand-border flex items-center justify-between hover:border-brand-sage transition-colors">
+                    <div>
+                        <h4 class="font-semibold text-sm text-brand-charcoal">Масаж рук</h4>
+                        <span class="text-xs text-brand-muted font-mono">25 хв</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-bold text-brand-charcoal text-base">500 ₴</span>
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-brand-border flex items-center justify-between hover:border-brand-sage transition-colors">
+                    <div>
+                        <h4 class="font-semibold text-sm text-brand-charcoal">Масаж стоп</h4>
+                        <span class="text-xs text-brand-muted font-mono">30 хв</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-bold text-brand-charcoal text-base">500 ₴</span>
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-brand-border flex items-center justify-between hover:border-brand-sage transition-colors">
+                    <div>
+                        <h4 class="font-semibold text-sm text-brand-charcoal">Масаж «бразильські сідниці»</h4>
+                        <span class="text-xs text-brand-muted font-mono">30 хв</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-bold text-brand-charcoal text-base">600 ₴</span>
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-brand-border flex items-center justify-between hover:border-brand-sage transition-colors">
+                    <div>
+                        <h4 class="font-semibold text-sm text-brand-charcoal">Масаж моделюючий живота</h4>
+                        <span class="text-xs text-brand-muted font-mono">20 хв</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-bold text-brand-charcoal text-base">500 ₴</span>
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-brand-border flex items-center justify-between hover:border-brand-sage transition-colors">
+                    <div>
+                        <h4 class="font-semibold text-sm text-brand-charcoal">Медовий масаж всього тіла</h4>
+                        <span class="text-xs text-brand-muted font-mono">90 хв</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-bold text-brand-charcoal text-base">1 300 ₴</span>
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-brand-border flex items-center justify-between hover:border-brand-sage transition-colors">
+                    <div>
+                        <h4 class="font-semibold text-sm text-brand-charcoal">Медова мадеротерапія</h4>
+                        <span class="text-xs text-brand-muted font-mono">60 хв</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-bold text-brand-charcoal text-base">1 000 ₴</span>
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-brand-border flex items-center justify-between hover:border-brand-sage transition-colors">
+                    <div>
+                        <h4 class="font-semibold text-sm text-brand-charcoal">Стоун-масаж (гарячими камінням)</h4>
+                        <span class="text-xs text-brand-muted font-mono">60 хв</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-bold text-brand-charcoal text-base">1 100 ₴</span>
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-brand-border flex items-center justify-between hover:border-brand-sage transition-colors">
+                    <div>
+                        <h4 class="font-semibold text-sm text-brand-charcoal">Масаж трав'яними мішечками</h4>
+                        <span class="text-xs text-brand-muted font-mono">60 хв</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-bold text-brand-charcoal text-base">900 ₴</span>
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-brand-border flex items-center justify-between hover:border-brand-sage transition-colors">
+                    <div>
+                        <h4 class="font-semibold text-sm text-brand-charcoal">Медовий антицелюлітний</h4>
+                        <span class="text-xs text-brand-muted font-mono">40 хв</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-bold text-brand-charcoal text-base">800 ₴</span>
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-brand-border flex items-center justify-between hover:border-brand-sage transition-colors">
+                    <div>
+                        <h4 class="font-semibold text-sm text-brand-charcoal">Класичний антицелюлітний</h4>
+                        <span class="text-xs text-brand-muted font-mono">60 хв</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-bold text-brand-charcoal text-base">800 ₴</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- HARDWARE MASSAGE (Апаратний) & PAIR PROGRAMS -->
+    <section id="hardware" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12">
+                
+                <!-- Hardware Massage Column -->
+                <div>
+                    <div class="mb-8">
+                        <span class="text-xs uppercase tracking-[0.2em] text-brand-sagedark font-semibold">Новітні технології</span>
+                        <h2 class="font-serif-title text-3xl font-normal text-brand-charcoal mt-1">АПАРАТНИЙ МАСАЖ</h2>
+                        <div class="w-12 h-0.5 bg-brand-sage mt-2"></div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="p-4 rounded-2xl bg-brand-bg border border-brand-border flex justify-between items-center">
+                            <div>
+                                <h4 class="font-semibold text-sm text-brand-charcoal">Ендосфера-терапія всього тіла</h4>
+                                <span class="text-xs text-brand-muted font-mono">60 хв</span>
+                            </div>
+                            <span class="font-bold font-mono text-brand-charcoal">800 ₴</span>
+                        </div>
+
+                        <div class="p-4 rounded-2xl bg-brand-bg border border-brand-border flex justify-between items-center">
+                            <div>
+                                <h4 class="font-semibold text-sm text-brand-charcoal">Ендосфера-терапія обличчя</h4>
+                                <span class="text-xs text-brand-muted font-mono">20 хв</span>
+                            </div>
+                            <span class="font-bold font-mono text-brand-charcoal">500 ₴</span>
+                        </div>
+
+                        <div class="p-4 rounded-2xl bg-brand-bg border border-brand-border flex justify-between items-center">
+                            <div>
+                                <h4 class="font-semibold text-sm text-brand-charcoal">Вакуумно-роликовий масаж тіла</h4>
+                                <span class="text-xs text-brand-muted font-mono">45 хв</span>
+                            </div>
+                            <span class="font-bold font-mono text-brand-charcoal">500 ₴</span>
+                        </div>
+
+                        <div class="p-4 rounded-2xl bg-brand-bg border border-brand-border flex justify-between items-center">
+                            <div>
+                                <h4 class="font-semibold text-sm text-brand-charcoal">Постановка вакуумних банок</h4>
+                                <span class="text-xs text-brand-muted font-mono">30 хв</span>
+                            </div>
+                            <span class="font-bold font-mono text-brand-charcoal">500 ₴</span>
+                        </div>
+
+                        <div class="p-4 rounded-2xl bg-brand-bg border border-brand-border flex justify-between items-center">
+                            <div>
+                                <h4 class="font-semibold text-sm text-brand-charcoal">Кавітація тіла</h4>
+                                <span class="text-xs text-brand-muted font-mono">60 хв</span>
+                            </div>
+                            <span class="font-bold font-mono text-brand-charcoal">500 ₴</span>
+                        </div>
+
+                        <div class="p-4 rounded-2xl bg-brand-bg border border-brand-border flex justify-between items-center">
+                            <div>
+                                <h4 class="font-semibold text-sm text-brand-charcoal">РФ-ліфтинг тіла</h4>
+                                <span class="text-xs text-brand-muted font-mono">60 хв</span>
+                            </div>
+                            <span class="font-bold font-mono text-brand-charcoal">500 ₴</span>
+                        </div>
+
+                        <div class="p-4 rounded-2xl bg-brand-bg border border-brand-border flex justify-between items-center">
+                            <div>
+                                <h4 class="font-semibold text-sm text-brand-charcoal">Кріоліполіз (1 капсула)</h4>
+                                <span class="text-xs text-brand-muted">за процедуру</span>
+                            </div>
+                            <span class="font-bold font-mono text-brand-charcoal">1 000 ₴</span>
+                        </div>
+
+                        <div class="p-4 rounded-2xl bg-brand-bg border border-brand-border flex justify-between items-center">
+                            <div>
+                                <h4 class="font-semibold text-sm text-brand-charcoal">Кріоліполіз (2 капсули)</h4>
+                                <span class="text-xs text-brand-muted">за процедуру</span>
+                            </div>
+                            <span class="font-bold font-mono text-brand-charcoal">1 200 ₴</span>
+                        </div>
+
+                        <div class="p-4 rounded-2xl bg-brand-bg border border-brand-border flex justify-between items-center">
+                            <div>
+                                <h4 class="font-semibold text-sm text-brand-charcoal">Електропорація обличчя</h4>
+                                <span class="text-xs text-brand-muted font-mono">30 хв</span>
+                            </div>
+                            <span class="font-bold font-mono text-brand-charcoal">500 ₴</span>
+                        </div>
+
+                        <div class="p-4 rounded-2xl bg-brand-bg border border-brand-border flex justify-between items-center">
+                            <div>
+                                <h4 class="font-semibold text-sm text-brand-charcoal">Мікротоки обличчя</h4>
+                                <span class="text-xs text-brand-muted">дарсонвалізація, гальванізація (20 хв)</span>
+                            </div>
+                            <span class="font-bold font-mono text-brand-charcoal">400 ₴</span>
+                        </div>
+
+                        <div class="p-4 rounded-2xl bg-brand-bg border border-brand-border flex justify-between items-center">
+                            <div>
+                                <h4 class="font-semibold text-sm text-brand-charcoal">РФ-ліфтинг обличчя</h4>
+                                <span class="text-xs text-brand-muted font-mono">40 хв</span>
+                            </div>
+                            <span class="font-bold font-mono text-brand-charcoal">500 ₴</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pair Programs Column -->
+                <div>
+                    <div class="mb-8">
+                        <span class="text-xs uppercase tracking-[0.2em] text-brand-sagedark font-semibold">Для двох</span>
+                        <h2 class="font-serif-title text-3xl font-normal text-brand-charcoal mt-1">ПАРНІ ПРОГРАМИ</h2>
+                        <div class="w-12 h-0.5 bg-brand-sage mt-2"></div>
+                    </div>
+
+                    <div class="space-y-6">
+                        
+                        <!-- Program 1 -->
+                        <div class="p-6 rounded-3xl bg-brand-sand/50 border border-brand-border space-y-4">
+                            <h3 class="font-serif-title text-xl font-bold text-brand-charcoal">Парний масаж в одному кабінеті (масаж на вибір)</h3>
+                            <div class="space-y-2 text-xs">
+                                <div class="flex justify-between items-center py-1.5 border-b border-brand-border/60">
+                                    <span>Тривалість: 60 хвилин</span>
+                                    <span class="font-bold font-mono text-base">2 200 ₴</span>
+                                </div>
+                                <div class="flex justify-between items-center py-1.5">
+                                    <span>Тривалість: 1.5 години (90 хв)</span>
+                                    <span class="font-bold font-mono text-base">3 000 ₴</span>
+                                </div>
+                            </div>
+                            <button onclick="openBookingModal('Парний масаж в одному кабінеті')" class="w-full py-2.5 rounded-xl bg-brand-charcoal text-white text-xs font-semibold uppercase tracking-wider">
+                                Забронювати для двох
+                            </button>
+                        </div>
+
+                        <!-- Program 2 -->
+                        <div class="p-6 rounded-3xl bg-brand-sand/50 border border-brand-border space-y-4">
+                            <h3 class="font-serif-title text-xl font-bold text-brand-charcoal">Парний масаж на один час в різних кабінетах</h3>
+                            <div class="space-y-2 text-xs">
+                                <div class="flex justify-between items-center py-1.5 border-b border-brand-border/60">
+                                    <span>Тривалість: 60 хвилин</span>
+                                    <span class="font-bold font-mono text-base">2 500 ₴</span>
+                                </div>
+                                <div class="flex justify-between items-center py-1.5">
+                                    <span>Тривалість: 1.5 години (90 хв)</span>
+                                    <span class="font-bold font-mono text-base">3 300 ₴</span>
+                                </div>
+                            </div>
+                            <button onclick="openBookingModal('Парний масаж у різних кабінетах')" class="w-full py-2.5 rounded-xl bg-brand-charcoal text-white text-xs font-semibold uppercase tracking-wider">
+                                Забронювати для двох
+                            </button>
+                        </div>
+
+                        <!-- Program 3 -->
+                        <div class="p-6 rounded-3xl bg-brand-sand/50 border border-brand-border space-y-3">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-serif-title text-xl font-bold text-brand-charcoal">Стоун-масаж для двох</h3>
+                                    <p class="text-xs text-brand-muted">Гарячими камінням (60 хв)</p>
+                                </div>
+                                <span class="font-bold font-mono text-lg text-brand-charcoal">3 500 ₴</span>
+                            </div>
+                            <button onclick="openBookingModal('Парний Стоун-масаж')" class="w-full py-2.5 rounded-xl bg-brand-charcoal text-white text-xs font-semibold uppercase tracking-wider">
+                                Забронювати
+                            </button>
+                        </div>
+
+                        <!-- Program 4 -->
+                        <div class="p-6 rounded-3xl bg-brand-sand/50 border border-brand-border space-y-3">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-serif-title text-xl font-bold text-brand-charcoal">Масаж трав'яними мішечками для двох</h3>
+                                    <p class="text-xs text-brand-muted">Релакс-терапія (60 хв)</p>
+                                </div>
+                                <span class="font-bold font-mono text-lg text-brand-charcoal">2 500 ₴</span>
+                            </div>
+                            <button onclick="openBookingModal('Парний масаж трав\'яними мішечками')" class="w-full py-2.5 rounded-xl bg-brand-charcoal text-white text-xs font-semibold uppercase tracking-wider">
+                                Забронювати
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SCHEDULE & LOCATION SECTION -->
+    <section id="contacts" class="py-16 bg-brand-bg border-t border-brand-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-start">
+                
+                <div class="lg:col-span-5 bg-white p-8 rounded-3xl border border-brand-border space-y-6 shadow-sm">
+                    <div>
+                        <span class="text-xs uppercase tracking-[0.2em] text-brand-sagedark font-semibold block mb-1">Години прийому</span>
+                        <h2 class="font-serif-title text-3xl font-semibold text-brand-charcoal">Графік роботи</h2>
+                    </div>
+
+                    <div id="status-badge" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        <span id="status-text">Студія працює сьогодні</span>
+                    </div>
+
+                    <div class="space-y-3 text-xs">
+                        <div class="flex justify-between py-2 border-b border-brand-border/70">
+                            <span class="font-medium text-brand-charcoal">Понеділок</span>
+                            <span class="text-brand-muted font-mono">08:00 – 19:00</span>
+                        </div>
+                        <div class="flex justify-between py-2 border-b border-brand-border/70">
+                            <span class="font-medium text-brand-charcoal">Вівторок</span>
+                            <span class="text-brand-muted font-mono">08:00 – 19:00</span>
+                        </div>
+                        <div class="flex justify-between py-2 border-b border-brand-border/70">
+                            <span class="font-medium text-brand-charcoal">Середа</span>
+                            <span class="text-brand-muted font-mono">08:00 – 19:00</span>
+                        </div>
+                        <div class="flex justify-between py-2 border-b border-brand-border/70">
+                            <span class="font-medium text-brand-charcoal">Четвер</span>
+                            <span class="text-brand-muted font-mono">08:00 – 19:00</span>
+                        </div>
+                        <div class="flex justify-between py-2 border-b border-brand-border/70">
+                            <span class="font-medium text-brand-charcoal">П'ятниця</span>
+                            <span class="text-brand-muted font-mono">08:00 – 19:00</span>
+                        </div>
+                        <div class="flex justify-between py-2 border-b border-brand-border/70">
+                            <span class="font-medium text-brand-charcoal">Субота</span>
+                            <span class="text-brand-muted font-mono">08:00 – 19:00</span>
+                        </div>
+                        <div class="flex justify-between py-2 text-rose-600 font-medium">
+                            <span>Неділя</span>
+                            <span>Зачинено (Вихідний)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 space-y-8">
+                    <div>
+                        <span class="text-xs uppercase tracking-[0.2em] text-brand-sagedark font-semibold block mb-1">Як нас знайти</span>
+                        <h2 class="font-serif-title text-3xl sm:text-4xl font-normal text-brand-charcoal">Локація та контактування</h2>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <div class="p-6 rounded-2xl bg-white border border-brand-border space-y-2">
+                            <div class="w-10 h-10 rounded-full bg-brand-sand flex items-center justify-center text-brand-sagedark mb-3">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <h4 class="font-serif-title text-xl font-semibold text-brand-charcoal">Адреса</h4>
+                            <p class="text-xs text-brand-muted leading-relaxed">
+                                вул. Преображенська,<br>
+                                м. Кропивницький, Кіровоградська обл., 25000
+                            </p>
+                            <a href="https://maps.google.com/?q=Преображенська+вулиця,+Кропивницький" target="_blank" rel="noopener noreferrer" class="inline-block pt-2 text-xs font-semibold text-brand-sagedark hover:underline">
+                                Відкрити Google Map <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-1"></i>
+                            </a>
+                        </div>
+
+                        <div class="p-6 rounded-2xl bg-white border border-brand-border space-y-2">
+                            <div class="w-10 h-10 rounded-full bg-brand-sand flex items-center justify-center text-brand-sagedark mb-3">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <h4 class="font-serif-title text-xl font-semibold text-brand-charcoal">Телефон & Месенджери</h4>
+                            <p class="text-xs text-brand-muted">Телефонуйте для запису:</p>
+                            <p class="text-base font-semibold text-brand-charcoal font-mono pt-1">+38 (097) 732-86-05</p>
+                            
+                            <div class="flex gap-2 pt-2">
+                                <a href="viber://chat?number=%2B380977328605" class="px-3 py-1.5 rounded-lg bg-purple-100 text-purple-800 text-xs font-medium hover:bg-purple-200 transition-colors">
+                                    Viber
+                                </a>
+                                <a href="https://t.me/+380977328605" target="_blank" class="px-3 py-1.5 rounded-lg bg-sky-100 text-sky-800 text-xs font-medium hover:bg-sky-200 transition-colors">
+                                    Telegram
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="mt-auto bg-brand-charcoal text-white py-12 border-t border-brand-charcoal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-white/10">
+                
+                <div class="flex items-center gap-3">
+                    <div class="border-r border-white/30 pr-3">
+                        <svg class="h-8 w-auto text-white" viewBox="0 0 100 80" fill="none" stroke="currentColor">
+                            <path d="M 15 10 L 15 70" stroke-width="6" />
+                            <path d="M 15 40 Q 38 10 42 35 L 42 36 Q 30 50 15 40" stroke-width="5" fill="currentColor"/>
+                            <path d="M 28 38 L 43 70" stroke-width="6"/>
+                            <line x1="50" y1="5" x2="50" y2="75" stroke-width="2" stroke="#ffffff" />
+                            <path d="M 58 10 L 58 70" stroke-width="6"/>
+                            <path d="M 85 10 L 85 70" stroke-width="6"/>
+                            <line x1="58" y1="40" x2="85" y2="40" stroke-width="5"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="text-[10px] uppercase tracking-[0.25em] text-white/60 block">Massage studio</span>
+                        <span class="font-serif-title text-lg font-bold tracking-[0.15em] leading-tight">RELAX HOUSE</span>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-6 text-xs text-white/70">
+                    <a href="#manual" class="hover:text-white transition-colors">Ручний масаж</a>
+                    <a href="#hardware" class="hover:text-white transition-colors">Апаратний</a>
+                    <a href="#spa-menu" class="hover:text-white transition-colors">SPA Menu</a>
+                    <a href="#body-wraps" class="hover:text-white transition-colors">Обгортання</a>
+                    <a href="#contacts" class="hover:text-white transition-colors">Контакти</a>
+                </div>
+
+                <a href="tel:+380977328605" class="text-xs font-semibold text-brand-beige hover:text-white transition-colors">
+                    +380 97 732 86 05
+                </a>
+            </div>
+
+            <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-[11px] text-white/50 gap-4">
+                <p>© <span id="year"></span> RELAX HOUSE. Студія масажу у Кропивницькому.</p>
+                <p>Твій простір гармонії та відновлення</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BOOKING MODAL -->
+    <div id="booking-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+        <div onclick="closeBookingModal()" class="fixed inset-0 modal-backdrop transition-opacity"></div>
+
+        <div class="relative bg-brand-card rounded-3xl max-w-lg w-full p-6 sm:p-8 border border-brand-border shadow-2xl z-10 space-y-6">
+            <button onclick="closeBookingModal()" class="absolute top-6 right-6 text-brand-muted hover:text-brand-charcoal text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="text-center space-y-1">
+                <span class="text-[10px] uppercase tracking-[0.2em] text-brand-sagedark font-bold">Онлайн Запис</span>
+                <h3 class="font-serif-title text-2xl sm:text-3xl font-semibold text-brand-charcoal">Забронювати процедуру</h3>
+                <p class="text-xs text-brand-muted">Залиште ваші дані і ми зателефонуємо для підтвердження</p>
+            </div>
+
+            <form id="booking-form" onsubmit="handleFormSubmit(event)" class="space-y-4 text-xs">
+                <div>
+                    <label class="block text-brand-charcoal font-medium mb-1.5">Ваше Ім'я *</label>
+                    <input type="text" required placeholder="Наприклад, Олена" class="w-full px-4 py-3 rounded-xl bg-brand-bg border border-brand-border focus:outline-none focus:border-brand-sage transition-colors text-sm">
+                </div>
+
+                <div>
+                    <label class="block text-brand-charcoal font-medium mb-1.5">Номер телефону *</label>
+                    <input type="tel" required placeholder="+380 (__) ___-__-__" class="w-full px-4 py-3 rounded-xl bg-brand-bg border border-brand-border focus:outline-none focus:border-brand-sage transition-colors text-sm font-mono">
+                </div>
+
+                <div>
+                    <label class="block text-brand-charcoal font-medium mb-1.5">Обрана послуга</label>
+                    <input type="text" id="modal-service-input" placeholder="Введіть або виберіть послугу" class="w-full px-4 py-3 rounded-xl bg-brand-bg border border-brand-border focus:outline-none focus:border-brand-sage transition-colors text-sm">
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-brand-charcoal font-medium mb-1.5">Бажана дата</label>
+                        <input type="date" required class="w-full px-3 py-3 rounded-xl bg-brand-bg border border-brand-border focus:outline-none focus:border-brand-sage transition-colors text-xs">
+                    </div>
+                    <div>
+                        <label class="block text-brand-charcoal font-medium mb-1.5">Бажаний час</label>
+                        <select class="w-full px-3 py-3 rounded-xl bg-brand-bg border border-brand-border focus:outline-none focus:border-brand-sage transition-colors text-xs">
+                            <option value="09:00">09:00</option>
+                            <option value="11:00">11:00</option>
+                            <option value="13:00">13:00</option>
+                            <option value="15:00">15:00</option>
+                            <option value="17:00">17:00</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="pt-2">
+                    <button type="submit" class="w-full py-3.5 rounded-xl text-xs uppercase tracking-widest font-semibold bg-brand-sage text-white hover:bg-brand-sagedark transition-colors shadow-md">
+                        Підтвердити запис
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="bg-brand-charcoal text-white px-5 py-4 rounded-2xl shadow-xl flex items-center gap-3 border border-white/10">
+            <div class="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-sm shrink-0">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <div>
+                <h5 class="text-xs font-semibold">Дякуємо! Заявку прийнято.</h5>
+                <p class="text-[11px] text-white/70">Адміністратор зв'яжеться з вами найближчим часом.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        function checkOpenStatus() {
+            const now = new Date();
+            const day = now.getDay();
+            const hour = now.getHours();
+
+            const statusBadge = document.getElementById('status-badge');
+            const statusText = document.getElementById('status-text');
+
+            if (day === 0) {
+                statusBadge.className = "inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium bg-rose-100 text-rose-800";
+                statusText.textContent = "Сьогодні вихідний (Зачинено)";
+            } else if (hour >= 8 && hour < 19) {
+                statusBadge.className = "inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800";
+                statusText.textContent = "Зараз відчинено (до 19:00)";
+            } else {
+                statusBadge.className = "inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800";
+                statusText.textContent = "Зараз зачинено (відчиняємось о 08:00)";
+            }
+        }
+        checkOpenStatus();
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            menu.classList.toggle('hidden');
+            
+            if (menu.classList.contains('hidden')) {
+                icon.className = 'fa-solid fa-bars text-xl';
+            } else {
+                icon.className = 'fa-solid fa-xmark text-xl';
+            }
+        }
+
+        function openBookingModal(serviceName = '') {
+            const modal = document.getElementById('booking-modal');
+            const input = document.getElementById('modal-service-input');
+            if (input && serviceName) {
+                input.value = serviceName;
+            }
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeBookingModal() {
+            const modal = document.getElementById('booking-modal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            closeBookingModal();
+            showToast();
+            event.target.reset();
+        }
+
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 4000);
+        }
+    </script>
+</body>
+</html>
